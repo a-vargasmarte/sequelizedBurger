@@ -15,8 +15,15 @@ module.exports = (app, db) => {
 
     // GET route for getting all the burgers
     app.get("/api/Burgers", (req, res) => {
-        // console.log(db.Todo);
+
         db.Burgers.findAll()
+            .then(results => res.json(results));
+    });
+
+    // GET route for getting all the customers
+    app.get("/api/Customer", (req, res) => {
+        // console.log(db.Customers);
+        db.Customers.findAll()
             .then(results => res.json(results));
     });
 
@@ -26,6 +33,17 @@ module.exports = (app, db) => {
         db.Burgers.create({
             burger_name: req.body.burger_name,
             devoured: req.body.devoured
+        }).then(results =>
+            // you can now access the newly created burger via the variable task
+            res.json(results)
+        )
+    });
+
+    // POST route for saving a new customer. We can create a customer using the data on req.body
+    app.post("/api/Customer", (req, res) => {
+        db.Customer.create({
+            customer_name: req.body.customer_name,
+            devoured_burger: req.body.devoured_burger
         }).then(results =>
             // you can now access the newly created burger via the variable task
             res.json(results)
