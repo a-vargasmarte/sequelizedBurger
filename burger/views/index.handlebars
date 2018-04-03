@@ -1,0 +1,36 @@
+<h1>Burgers!</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <ul class="list-group burger-list">
+                <li class="list-group-item new-item">
+                    <form id="burger-form">
+                        {{!--
+                        <input class="new-customer" placeholder="Customer Name" type="text" /> --}}
+                        <input class="new-item" placeholder="Create a burger" type="text" />
+
+                        <button class="btn btn-default burger-btn">Place your order</button>
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <span class="burger-container">
+
+                {{#each burgers}} {{#unless devoured}} {{> burgers/burger-block devoured=false}} {{/unless}} {{/each}}
+
+
+            </span>
+        </div>
+        <div class="col-md-3 to-devour">
+            <span class="devoured-container">
+                {{#each burgers}} {{#if devoured}} {{> burgers/burger-block devoured=true}} {{/if}} {{/each}}
+            </span>
+        </div>
+    </div>
+</div>

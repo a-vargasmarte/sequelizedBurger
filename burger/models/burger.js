@@ -16,16 +16,16 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // Add a belongsTo Association of the Burger to a Customer
-    Burger.associate = function (models) {
-        // console.log(models);
-        models.Burgers.belongsTo(models.Customers, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    }
+    // // Add a belongsTo Association of the Burger to a Customer
+    // Burger.associate = function (models) {
+    //     console.log(models);
+    //     models.Burgers.belongsTo(models.Customers, {
+    //         onDelete: "CASCADE",
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // }
 
     return Burger;
 };

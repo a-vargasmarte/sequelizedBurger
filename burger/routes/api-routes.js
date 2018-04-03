@@ -1,74 +1,35 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
+// // *********************************************************************************
+// // api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// // *********************************************************************************
 
-// Dependencies
-// =============================================================
+// // Dependencies
+// // =============================================================
 
-// grab the orm from the config
-// (remember: connection.js -> orm.js -> route file)
-// const db = require("../config/orm");
+// // require the models
+// const models = require("../models");
 
-// Routes
-// =============================================================
-module.exports = (app, db) => {
+// // Routes
+// // =============================================================
+// module.exports = app => {
 
-    // GET route for getting all the burgers
-    app.get("/api/Burgers", (req, res) => {
+//     // GET route for getting all the burgers
+//     app.get("/api/Burgers", (req, res) => {
+//         const query = {};
+//         if (req.query.customer_id) {
+//             query.CustomerId = req.query.customer_id;
+//         }
 
-        db.Burgers.findAll()
-            .then(results => res.json(results));
-    });
+//         models.Burgers
+//             .findAll({ where: query })
+//             .then(dbBurger => res.json(dbBurger));
+//     });
 
-    // GET route for getting all the customers
-    app.get("/api/Customer", (req, res) => {
-        // console.log(db.Customers);
-        db.Customers.findAll()
-            .then(results => res.json(results));
-    });
+//     // // GET route for getting all the customers
+//     // app.get("/api/Customer", (req, res) => {
+//     //     // console.log(db.Customers);
+//     //     models.Customers.findAll()
+//     //         .then(results => res.json(results));
+//     // });
 
-
-    // POST route for saving a new burger. We can create a burger using the data on req.body
-    app.post("/api/Burgers", (req, res) => {
-        db.Burgers.create({
-            burger_name: req.body.burger_name,
-            devoured: req.body.devoured
-        }).then(results =>
-            // you can now access the newly created burger via the variable task
-            res.json(results)
-        )
-    });
-
-    // POST route for saving a new customer. We can create a customer using the data on req.body
-    app.post("/api/Customer", (req, res) => {
-        db.Customer.create({
-            customer_name: req.body.customer_name,
-            devoured_burger: req.body.devoured_burger
-        }).then(results =>
-            // you can now access the newly created burger via the variable task
-            res.json(results)
-        )
-    });
-
-    // DELETE route for deleting burgers. We can access the ID of the burger to delete in
-    // req.params.id
-    app.delete("/api/Burgers/:id", (req, res) => {
-        db.Burgers.destroy({
-            where: { id: req.params.id }
-        }).then(results => res.json(results));
-    });
-
-    // PUT route for updating burgers. We can access the updated burger in req.body
-    app.put("/api/Burgers", (req, res) => {
-        console.log(db.Burgers);
-        console.log(JSON.stringify(req.body, null, 2));
-        db.Burgers.update({
-            burger_name: req.body.burger_name,
-            devoured: req.body.devoured
-        },
-            { where: { id: req.body.id } })
-            .then(results => res.json(results));
-    });
-
-};
+// };
 
